@@ -1,0 +1,25 @@
+{
+  "name": "pomodoronow",
+  "version": "1.0.0",
+  "description": "\"Uma técnica de gerenciamento de tempo\"",
+  "main": "main.js",
+  "scripts": {
+    "test": "\"./node_modules/.bin/mocha tests/**/*.spec.js\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sjcostaneto/PomodoroNow.git"
+  },
+  "author": "Diorgenes Morais <diorgenesmorais@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sjcostaneto/PomodoroNow/issues"
+  },
+  "homepage": "https://github.com/sjcostaneto/PomodoroNow#readme",
+  "devDependencies": {
+    "ts-loader": "^7.0.0",
+    "typescript": "^3.8.3",
+    "webpack": "^4.42.1",
+    "webpack-cli": "^3.3.11"
+  }
+}
