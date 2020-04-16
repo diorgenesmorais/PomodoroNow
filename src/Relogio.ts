@@ -7,9 +7,10 @@ export default class Relogio {
     private _showMinutes: string = '00';
     private _showSegunds: string = '00';
 
-    constructor(start: number) {
+    constructor(start: number, ponto: any) {
         this._minutes = start;
         this._segunds = 60;
+        this._ponto = ponto;
     }
 
     format() {
@@ -20,6 +21,11 @@ export default class Relogio {
 
     interrupt() {
         this._pause = !this._pause;
+        if(this._pause) {
+            clearInterval(this.intervalId);
+        } else {
+            this.start();
+        }
     }
 
     setMinutes(pulse: number) {
@@ -39,17 +45,17 @@ export default class Relogio {
         return this.format();
     }
 
-    bind(ponto: any) {
-        this._ponto = ponto;
-        this.interrupt();
-        if(this._pause) {
-            if(this.intervalId) {
-                clearInterval(this.intervalId);
-            }
-            this.setMinutes(-1);
-            this.intervalId = setInterval(() => {
-                this._ponto.innerHTML = this.decrescer();
-            }, 1000);
+    start() {
+        if(this.intervalId) {
+            clearInterval(this.intervalId);
         }
+        this.setMinutes(-1);
+        this.intervalId = setInterval(() => {
+            this._ponto.innerHTML = this.decrescer();
+        }, 1000);
+    }
+
+    bind() {
+        this.interrupt();
     }
 }

@@ -1,5 +1,11 @@
 import Relogio from './Relogio';
 
-const ponto = document.querySelector('#tempo');
-const relogio = new Relogio(25);
-relogio.bind(ponto);
+(($) => {
+    const ponto: any = $('#tempo');
+    const started: any = $('#start');
+    const relogio = new Relogio(25, ponto);
+    relogio.bind();
+    started.addEventListener('click', () => {
+        relogio.interrupt();
+    })
+})(document.querySelector.bind(document));
