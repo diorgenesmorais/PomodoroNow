@@ -46,7 +46,7 @@ export default class Relogio {
             if(this.intervalId) {
                 clearInterval(this.intervalId);
             }
-            this._minutes--;
+            this.setMinutes(-1);
             this.intervalId = setInterval(() => {
                 this._ponto.innerHTML = this.decrescer();
             }, 1000);
