@@ -4,7 +4,8 @@
   "description": "\"Uma técnica de gerenciamento de tempo\"",
   "main": "main.js",
   "scripts": {
-    "test": "\"./node_modules/.bin/mocha tests/**/*.spec.js\""
+    "test": "./node_modules/.bin/mocha tests/**/*.spec.js",
+    "build": "webpack"
   },
   "repository": {
     "type": "git",
