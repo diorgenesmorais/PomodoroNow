@@ -16,7 +16,11 @@ export default class Relogio {
     }
 
     format() {
-         this._showSegunds = this._segunds < 10 ? `0${this._segunds.toString()}` : this._segunds.toString();
+        if(this._segunds === 60) {
+            this._showSegunds = '00';
+        } else {
+            this._showSegunds = this._segunds < 10 ? `0${this._segunds.toString()}` : this._segunds.toString();
+        }
          this._showMinutes = this._minutes < 10 ? `0${this._minutes.toString()}` : this._minutes.toString();
         return `${this._showMinutes}:${this._showSegunds}`;
     }
@@ -24,7 +28,7 @@ export default class Relogio {
     interrupt() {
         this._pause = !this._pause;
         if(this._pause) {
-            clearInterval(this.intervalId);
+            this.stop();
         } else {
             this.start();
         }
@@ -48,15 +52,25 @@ export default class Relogio {
     }
 
     start() {
-        if(this.intervalId) {
-            clearInterval(this.intervalId);
-        }
         if(this._minutes === this.START || this._minutes === this.PAUSE){
             this.setMinutes(-1);
         }
         this.intervalId = setInterval(() => {
             this._ponto.innerHTML = this.decrescer();
         }, 1000);
+    }
+
+    stop() {
+        if(this.intervalId) {
+            clearInterval(this.intervalId);
+        }
+    }
+
+    reiniciar() {
+        this.stop();
+        this._minutes = this.START;
+        this._segunds = 60;
+        this._ponto.innerHTML = this.format();
     }
 
     bind() {
